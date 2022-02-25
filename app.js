@@ -86,7 +86,9 @@ app.post("/",(req, res) =>{
     }
     else if (req.body.submit == '*') {
         const result = n1 * n2;
-        res.send(' ' + result);
+        res.send(" " + BigInt(result));
+     // res.send(' ' + result);
+    //  res.send(' ' + result.MIN_VALUE);
         client.connect(function (err) {
             var pg = "insert into calculator(num1, num2,operator,result,time) values('" + req.body.num1 + "', '" + req.body.num2 + "','" + req.body.submit + "','" + result + "',current_timestamp)";
             client.query(pg, function (err) {
@@ -98,7 +100,8 @@ app.post("/",(req, res) =>{
     }
     else if (req.body.submit == '/') {
         const result = n1 / n2;
-        res.send(' ' + result);
+        //res.send(' ' + result);
+        res.send(" " + BigInt(result));
         client.connect(function (err) {
             var pg = "insert into calculator(num1, num2,operator,result,time) values('" + req.body.num1 + "', '" + req.body.num2 + "','" + req.body.submit + "','" + result + "',current_timestamp)";
             client.query(pg, function (err) {
@@ -110,7 +113,8 @@ app.post("/",(req, res) =>{
     }
     else if (req.body.submit == '%') {
         const result = n1 % n2;
-        res.send(' ' + result);
+       // res.send(' ' + result);
+       res.send(" " + BigInt(result));
         client.connect(function (err) {
             var pg = "insert into calculator(num1, num2,operator,result,time) values('" + req.body.num1 + "', '" + req.body.num2 + "','" + req.body.submit + "','" + result + "',current_timestamp)";
             client.query(pg, function (err) {
@@ -128,8 +132,6 @@ app.post("/",(req, res) =>{
     calculate(num1, num2, operator);
 })
 
-
-
-app.listen(4005, (res) =>{
-    console.log('Server is on port 4005')
+app.listen(4006, (res) =>{
+    console.log('Server is on port 4006')
 })
